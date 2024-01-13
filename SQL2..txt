@@ -1,0 +1,63 @@
+--1. Лучшие товары месяца
+
+SELECT name, Price
+FROM item
+WHERE date >= DATEADD(MONTH, -1, GETDATE());
+
+--2. Эээ, рошен в Террарии?
+
+SELECT name, Price
+FROM Товары
+WHERE category = 'Кондитерские изделия?' AND (ваша торговая марка?) <> 'Roshen';
+
+--3. "К"арандаши в "А"лмазах
+
+SELECT name, category
+FROM item
+WHERE name LIKE 'К%' AND category LIKE '%А%';
+
+--4. В и Л (оригинальное название, я знаю)
+
+SELECT name
+FROM item
+WHERE name BETWEEN 'В%' AND 'Л%';
+
+--5. Бюджетный Хэллоуин
+
+SELECT name, Price, date
+FROM item
+WHERE Price < 50 AND date BETWEEN '2023-10-01' AND DATEADD(DAY, -1, GETDATE());
+
+--6. Безопасные зельки
+
+SELECT name, quantity
+FROM item
+WHERE category = 'Пресные и вкусные зельки, включая мёд' AND quantity > 100;
+
+--7. Ого, банкет для богачей
+
+SELECT name, Price
+FROM item
+WHERE Price BETWEEN 100 AND 200
+ORDER BY Price ASC;
+
+--8. Ооо, ну тут мне нечего сказать
+
+SELECT name
+FROM item
+WHERE LEN(name) - LEN(REPLACE(name, 'О', '')) = 3;
+
+--9. Прощай, Зенит, эх
+
+DELETE FROM item
+WHERE LEN(name) = 5;
+
+--10. Банкет для миллиардеров
+
+SELECT name, Price
+FROM item
+ORDER BY price DESC
+LIMIT 5;
+
+
+
